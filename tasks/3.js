@@ -4,7 +4,7 @@
 const data = require('../data/shop');
 const _ = require('lodash');
 
-function returnNSubcategoriesOfSection (section, amount) {
+function returnNSubcategoriesOfSection(section, amount) {
   let obj = _.find(data.sections,function(el) { return _.has(el.categories, section) });
   return _.sampleSize(obj.categories[section].subCategories, amount);
 }
