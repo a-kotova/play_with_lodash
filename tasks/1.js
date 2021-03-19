@@ -5,8 +5,8 @@
 const data = require('../data/shop');
 const _ = require('lodash');
 
-function arrayOfSectionNames (data) {
+function returnArrayOfSectionNames(data) {
   return _.keys(data.sections);
 }
 
-console.log(arrayOfSectionNames(data));
+console.log(returnArrayOfSectionNames(data));
