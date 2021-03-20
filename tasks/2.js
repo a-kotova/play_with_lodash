@@ -11,4 +11,3 @@ function countSubCategories(data) {
 }
 
 console.log(countSubCategories(data));
-
