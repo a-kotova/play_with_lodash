@@ -5,7 +5,7 @@ const data = require('../data/shop');
 const _ = require('lodash');
 
 function returnNSubcategoriesOfSection(section, amount) {
-  let arr = _.map(data.sections[section].categories, function (category) {return category.subCategories})
+  let arr = _.map(data.sections[section].categories, function (category) {return category.subCategories});
   return _.sampleSize(_.assign(...arr), amount);
 }
 
