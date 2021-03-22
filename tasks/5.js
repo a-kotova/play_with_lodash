@@ -5,9 +5,9 @@ const data = require('../data/shop');
 const _ = require('lodash');
 
 function checkIfSubCategoryUnique(givenSubCategory) {
-  const categories = _.map(data.sections, function(section) { return section.categories});
-  const subCategories = _.flatten(_.map(_.assign(...categories), function(category) { return _.keys(category.subCategories) }));
-  const givenSubCategoryAmount = (_.filter(subCategories, function(subCategory) { return subCategory === givenSubCategory })).length;
+  const arrayOfCategories = _.flatten(_.map(data.sections, function(section) { return _.values(section.categories) }));
+  const arrayOfSubCategories = _.flatten(_.map(arrayOfCategories, function(category) { return _.keys(category.subCategories) }));
+  const givenSubCategoryAmount = (_.filter(arrayOfSubCategories, function(subCategory) { return subCategory === givenSubCategory })).length;
   if (givenSubCategoryAmount === 1) {
     return true
   } else if (givenSubCategoryAmount > 1) {
@@ -17,4 +17,4 @@ function checkIfSubCategoryUnique(givenSubCategory) {
   }
 }
 
-console.log(checkIfSubCategoryUnique('chargers'));
+console.log(checkIfSubCategoryUnique('tvSets'));
