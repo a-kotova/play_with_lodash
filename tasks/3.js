@@ -4,9 +4,9 @@
 const data = require('../data/shop');
 const _ = require('lodash');
 
-function getNSubcategoriesOfSection(section, amount) {
-  const arrayOfSubCategories = _.flatten(_.map(_.values(data.sections[section].categories), function(category) { return _.values(category.subCategories) }));
-  return _.sampleSize(arrayOfSubCategories, amount);
+function getSectionSubcategories(section, amount) {
+  const subCategories = _.flatten(_.map(_.values(data.sections[section].categories), function(sectionCategories) { return _.values(sectionCategories.subCategories) }));
+  return _.sampleSize(subCategories, amount);
 }
 
-console.log(getNSubcategoriesOfSection('electronics', 2));
+console.log(getSectionSubcategories('electronics', 2));
