@@ -6,8 +6,8 @@ const data = require('../data/shop');
 const _ = require('lodash');
 
 function countSubCategories(data) {
-  let all = _.map(data.sections, function(section) { return section.categories});
-  return _.mapValues(_.assign(...all), function(category) { return _.keys(category.subCategories).length });
+  let allCategories = _.map(data.sections, function(storeSections) { return storeSections.categories});
+  return _.mapValues(_.assign(...allCategories), function(category) { return _.keys(category.subCategories).length });
 }
 
 console.log(countSubCategories(data));
