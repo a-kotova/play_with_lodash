@@ -5,9 +5,9 @@
 const data = require('../data/shop');
 const _ = require('lodash');
 
-function countSubCategories(data) {
-  let allCategories = _.map(data.sections, function(storeSections) { return storeSections.categories});
-  return _.mapValues(_.assign(...allCategories), function(category) { return _.keys(category.subCategories).length });
+function countSubCategories() {
+ let categoriesPerSection =  _.flatMap(data.sections, function(shopSection) { return _.toArray(_.pick(shopSection, ['categories'])) });
+ return _.fromPairs(_.flatMap(categoriesPerSection, function(sectionScope) { return _.toPairs(_.mapValues(sectionScope, function(sectionCategory) { return _.keys(sectionCategory.subCategories).length })) }));
 }
 
-console.log(countSubCategories(data));
+console.log(countSubCategories());
