@@ -14,7 +14,7 @@ function getSortedSubCategories(givenCategory, sortingOrder = 'asc') {
     })
   });
   const subCategoriesForGivenCategory = _.flatMap(subCategoriesPerCategoryPerSection, function(sectionScope) {
-    return _.flatten(_.values(_.pick(sectionScope, [givenCategory])))
+    return _.flatten(_.values(_.pick(sectionScope, givenCategory)))
   });
 
   return _.orderBy(subCategoriesForGivenCategory, ['ruName'], [sortingOrder]);
