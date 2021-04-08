@@ -5,25 +5,13 @@
 const data = require('../data/shop');
 const _ = require('lodash');
 
-function getSubCategories(givenCategory, subCategoriesNumber) {
-  const categoriesPerSection = _.flatMap(data.sections, function(shopSection) {
-    return shopSection.categories
-  });
-  const subCategoriesPerCategoryPerSection = _.flatMap(categoriesPerSection, function(sectionScope) {
-    return _.mapValues(sectionScope, function(category) {
-      return _.values(category.subCategories)
-    })
-  });
-
-  if (_.some(_.map(subCategoriesPerCategoryPerSection, function(shopSection) { return _.has(shopSection, givenCategory) }))) {
-    const subCategoriesForGivenCategory = _.flatMap(subCategoriesPerCategoryPerSection, function(sectionScope) {
-      return _.flatten(_.values(_.pick(sectionScope, givenCategory)))
-    });
-
-    return _.sampleSize(subCategoriesForGivenCategory, subCategoriesNumber);
-  } else {
-    throw 'Given category does not exist'
-  }
+function getSubCategories(givenSection, givenCategory, subCategoriesNumber) {
+  if (_.has(data.sections, givenSection)) {
+    const sectionCategories = data.sections[givenSection].categories;
+    if (_.has(sectionCategories, givenCategory)) {
+      return _.sampleSize(_.values(sectionCategories[givenCategory].subCategories), subCategoriesNumber);
+    } else throw new ReferenceError(`Given "${givenCategory}" category does not exist within given "${givenSection}" section`);
+  } else throw new ReferenceError(`Given "${givenSection}" section does not exist.`);
 }
 
-console.log(getSubCategories('CCTV', 1));
+console.log(getSubCategories('electronics', 'televisionAnDVideo', 7));
