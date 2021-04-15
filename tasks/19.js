@@ -3,7 +3,6 @@
 // Log result of function execution into console.
 //
 const data = require('../data/shop');
-const _ = require('lodash');
 
 function getObjectWithDelay(objectToGet, delay) {
   function getObject() {
