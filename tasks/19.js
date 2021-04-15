@@ -4,11 +4,11 @@
 //
 const data = require('../data/shop');
 
-function getObjectWithDelay(objectToGet, delay) {
+function getObjectWithDelay(objectToGet) {
   function getObject() {
     console.log(objectToGet);
   }
-  return setTimeout(getObject, delay);
+  return setTimeout(getObject, 3000);
 }
 
-getObjectWithDelay(data, 3000);
+getObjectWithDelay(data);
