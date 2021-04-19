@@ -8,7 +8,8 @@ const data = require('../data/shop');
 const _ = require('lodash');
 
 function getMutatedObject() {
-  const sectionsWithModifiedSubCategories = _.forEach(data.sections, function(shopSection) {
+  let dataCopy = _.cloneDeep(data);
+  const sectionsWithModifiedSubCategories = _.forEach(dataCopy.sections, function(shopSection) {
     return _.forEach(shopSection.categories, function(category) {
       category.subCategories = _.toArray(category.subCategories);
     });
@@ -16,8 +17,8 @@ function getMutatedObject() {
   const sectionsWithModifiedCategories = _.forEach(sectionsWithModifiedSubCategories, function(shopSection) {
     shopSection.categories = _.toArray(shopSection.categories);
   });
-  data.sections = _.toArray(sectionsWithModifiedCategories);
-  return data;
+  dataCopy.sections = _.toArray(sectionsWithModifiedCategories);
+  return dataCopy;
 }
 
 console.log(getMutatedObject());
