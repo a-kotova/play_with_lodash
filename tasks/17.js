@@ -5,25 +5,23 @@
 const data = require('../data/shop');
 const _ = require('lodash');
 
-function ifMainTileHasSubCategory(givenCategory, givenSubCategory) {
-  const allCategoriesPerSection =  _.flatMap(data.sections, function (shopSection) {
-    return shopSection.categories;
+function ifTileHasSubCategory() {
+  const allCategories = _.flatMap(data.sections, function(shopSection) {
+    return _.values(shopSection.categories);
   });
-  const givenSubCategoryPath = _.compact(_.map(allCategoriesPerSection, function(sectionScope) {
-    if(_.has(sectionScope, givenCategory)) {
-      try {
-        return sectionScope[givenCategory].subCategories[givenSubCategory].path;
-      } catch(e) {
-        throw `Given "${givenSubCategory}" subCategory is not part of given "${givenCategory}" category`
-      }
-    }
+  const allSubCategories = _.flatMap(allCategories, function(category) {
+    return _.values(category.subCategories);
+  });
+  const allSubCategoriesPaths = _.uniq(_.map(allSubCategories, function(subCategory) {
+    return subCategory.path;
   }));
 
-  if (givenSubCategoryPath.length === 1) {
-    _.forEach(data.mainTiles, function(tile) {
-      console.log(`${tile.ruName}: ${_.includes(tile.path, givenSubCategoryPath[0])}`)
-    })
-  } else throw new Error(`Given "${givenCategory}" category does not exist`)
+  _.forEach(data.mainTiles, function(tile) {
+    const ifContainsSubCategory = _.some(allSubCategoriesPaths, function(subCategoryPath) {
+      return _.includes(tile.path, subCategoryPath);
+    });
+    console.log(`${tile.ruName}: ${ifContainsSubCategory}`);
+  });
 }
 
-ifMainTileHasSubCategory('tourismAndCamping','thermosesAndThermomugs');
+ifTileHasSubCategory();
