@@ -1,0 +1,7 @@
+As soon as 'lodash' ready, lets do some general stuff
+
+1. Setup eslint and configure it to use 'airbnb-base' config
+2. Rework functions to be arrow functions
+3. Create helpers to methods which are in common use across your tasks
+4. Change tasks numeration to be correct against task files :)
+5. Update methods for their length not to exceed suggested line length
