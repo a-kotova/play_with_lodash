@@ -1,4 +1,4 @@
-// Task 3:
+// Task 6:
 // Create function which returns all non-unique subcategories.
 // Items in returning collection should have only 3 properties: 'ruName', 'subcategoryPageRuHeading', 'path'
 //

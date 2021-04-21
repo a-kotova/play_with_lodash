@@ -1,4 +1,4 @@
-// Task 19:
+// Task 3:
 // Create a function which returns given amount of random subcategories of given section.
 //
 const data = require('../data/shop');
