@@ -6,9 +6,8 @@ const data = require('../data/shop');
 
 function isSubCategoryUnique(subCategoryRuName) {
   const categories = _.flatten(_.map(data.sections, (section) => _.values(section.categories)));
-  const allSubCategories = _.flatten(_.map(categories, (category) => {
-    _.values(category.subCategories);
-  }));
+  const allSubCategories = _.flatten(_.map(categories,
+    (category) => _.values(category.subCategories)));
   const givenSubCategoryAmount = (_.filter(allSubCategories,
     (subCategory) => subCategory.ruName === subCategoryRuName)).length;
   if (givenSubCategoryAmount === 1) {

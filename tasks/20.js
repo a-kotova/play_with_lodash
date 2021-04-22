@@ -11,9 +11,9 @@ function getMutatedObject() {
   const dataCopy = _.cloneDeep(data);
   const sectionsWithModifiedSubCategories = _.forEach(dataCopy.sections,
     (shopSection) => _.forEach(shopSection.categories,
-      (category) => { category.subCategories = _.toArray(category.subCategories); }));
+      (category) => category.subCategories = _.toArray(category.subCategories)));
   const sectionsWithModifiedCategories = _.forEach(sectionsWithModifiedSubCategories,
-    (shopSection) => { shopSection.categories = _.toArray(shopSection.categories); });
+    (shopSection) => shopSection.categories = _.toArray(shopSection.categories));
   dataCopy.sections = _.toArray(sectionsWithModifiedCategories);
   return dataCopy;
 }
