@@ -3,11 +3,11 @@
 // with length more than 5 characters
 //
 const _ = require('lodash');
-const data = require('../data/shop');
+const helpers = require('../utils/helpers');
 
 function getFrequentRuNameWordForSubCategoriesLongerThan5() {
-  const allCategories = _.flatMap(data.sections, (shopSection) => _.values(shopSection.categories));
-  const allSubCategories = _.flatMap(allCategories, (category) => _.values(category.subCategories));
+  const allCategories = helpers.getArrayOfCategories();
+  const allSubCategories = helpers.getAllSubCategories(allCategories);
   const subCategoriesRuNames = _.map(allSubCategories, (subCategory) => subCategory.ruName);
   const wordsInRuNames = _.flatMap(subCategoriesRuNames, (ruName) => _.split(ruName, ' '));
   const wordsInRuNamesLongerThan5 = _.filter(wordsInRuNames, (word) => word.length > 5);

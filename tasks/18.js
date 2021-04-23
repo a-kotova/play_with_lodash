@@ -2,10 +2,10 @@
 // Create a function which returns category name of given subcategory name
 //
 const _ = require('lodash');
-const data = require('../data/shop');
+const helpers = require('../utils/helpers');
 
 function getCategoryOfSubCategory(givenSubCategory) {
-  const categoriesPerSection = _.flatMap(data.sections, (shopSection) => shopSection.categories);
+  const categoriesPerSection = helpers.getCategoriesPerSection();
   const subCategoriesPerCategoryPerSection = _.flatMap(categoriesPerSection,
     (sectionScope) => _.mapValues(sectionScope, (category) => category.subCategories));
 

@@ -3,12 +3,12 @@
 // sorted alphabetically by 'ruName' in given order.
 //
 const _ = require('lodash');
-const data = require('../data/shop');
+const helpers = require('../utils/helpers');
 
 function getSortedSubCategories(givenCategory, sortingOrder = 'asc') {
-  const categoriesPerSection = _.flatMap(data.sections, (shopSection) => shopSection.categories);
-  const subCategoriesPerCategoryPerSection = _.flatMap(categoriesPerSection,
-    (sectionScope) => _.mapValues(sectionScope, (category) => _.values(category.subCategories)));
+  const categoriesPerSection = helpers.getCategoriesPerSection();
+  const subCategoriesPerCategoryPerSection = helpers
+    .getSubCategoriesPerCategoryPerSection(categoriesPerSection);
   const subCategoriesForGivenCategory = _.flatMap(subCategoriesPerCategoryPerSection,
     (sectionScope) => _.flatten(_.values(_.pick(sectionScope, givenCategory))));
 

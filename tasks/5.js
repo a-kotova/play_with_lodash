@@ -2,12 +2,11 @@
 // Create function checking whether given subcategory is unique in the shop
 //
 const _ = require('lodash');
-const data = require('../data/shop');
+const helpers = require('../utils/helpers');
 
 function isSubCategoryUnique(subCategoryRuName) {
-  const categories = _.flatten(_.map(data.sections, (section) => _.values(section.categories)));
-  const allSubCategories = _.flatten(_.map(categories,
-    (category) => _.values(category.subCategories)));
+  const categories = helpers.getArrayOfCategories();
+  const allSubCategories = helpers.getAllSubCategories(categories);
   const givenSubCategoryAmount = (_.filter(allSubCategories,
     (subCategory) => subCategory.ruName === subCategoryRuName)).length;
   if (givenSubCategoryAmount === 1) {

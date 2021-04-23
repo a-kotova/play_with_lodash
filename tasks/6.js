@@ -4,12 +4,11 @@
 // 'ruName', 'subcategoryPageRuHeading', 'path'
 //
 const _ = require('lodash');
-const data = require('../data/shop');
+const helpers = require('../utils/helpers');
 
 function getNonUniqueSubCategories() {
-  const categories = _.flatten(_.map(data.sections, (section) => _.values(section.categories)));
-  const allSubCategories = _.flatten(_.map(categories,
-    (category) => _.values(category.subCategories)));
+  const categories = helpers.getArrayOfCategories();
+  const allSubCategories = helpers.getAllSubCategories(categories);
   return _.map(_.filter(allSubCategories, (subCategory) => !subCategory.isUnique),
     (nonUniqueSubCategory) => _.pick(nonUniqueSubCategory, ['ruName', 'subcategoryPageRuHeading', 'path']));
 }
