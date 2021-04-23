@@ -18,5 +18,8 @@ module.exports = {
   },
   rules: {
     'class-methods-use-this': 0,
+    'no-console': 0,
+    'no-param-reassign': 0,
+    'no-return-assign': 0,
   },
 };

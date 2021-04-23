@@ -4,10 +4,11 @@
 //
 const _ = require('lodash');
 const data = require('../data/shop');
+const helpers = require('../utils/helpers');
 
 function ifTileHasSubCategory() {
-  const allCategories = _.flatMap(data.sections, (shopSection) => _.values(shopSection.categories));
-  const allSubCategories = _.flatMap(allCategories, (category) => _.values(category.subCategories));
+  const allCategories = helpers.getArrayOfCategories();
+  const allSubCategories = helpers.getAllSubCategories(allCategories);
   const allSubCategoriesPaths = _.uniq(_.map(allSubCategories, (subCategory) => subCategory.path));
 
   _.forEach(data.mainTiles, (tile) => {

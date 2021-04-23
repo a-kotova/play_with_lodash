@@ -4,10 +4,10 @@
 // and 'path' containing query params
 //
 const _ = require('lodash');
-const data = require('../data/shop');
+const helpers = require('../utils/helpers');
 
 function getTargetSubCategories() {
-  const allCategories = _.flatMap(data.sections, (shopSection) => _.values(shopSection.categories));
+  const allCategories = helpers.getArrayOfCategories();
   const allSubCategoriesPerCategory = _.flatMap(allCategories,
     (category) => _.toArray(_.pick(category, ['subCategories'])));
   const allSubCategories = _.flatMap(allSubCategoriesPerCategory,

@@ -3,7 +3,7 @@ module.exports = {
         {
             ruName: "Время делать подарки!",
             path: "/2019/12/02/rozygrysh-5?utm_source=main_tile&utm_medium=rozygrysh5&_ga=2.126731274.686889813.1575486217-1776173241.1573712126",
-            isUnique: false
+            isUnique: false,
         },
         {
             ruName: "Термосы, термокружки",
