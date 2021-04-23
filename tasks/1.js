@@ -1,12 +1,12 @@
-// Task 17:
+// Task 1:
 // Create function which returns array of all section names.
 //
 
-const data = require('../data/shop');
 const _ = require('lodash');
+const data = require('../data/shop');
 
-function getSectionNames(data) {
-  return _.keys(data.sections);
+function getSectionNames(object) {
+  return _.keys(object.sections);
 }
 
 console.log(getSectionNames(data));

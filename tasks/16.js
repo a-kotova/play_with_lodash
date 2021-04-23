@@ -1,8 +1,8 @@
-// Task 13:
+// Task 16:
 // Create function which returns copy of 'shop' object
 //
-const data = require('../data/shop');
 const _ = require('lodash');
+const data = require('../data/shop');
 
 function getCopiedObject(objectToCopy) {
   return _.cloneDeep(objectToCopy);

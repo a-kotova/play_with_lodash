@@ -1,12 +1,13 @@
-// Task 1:
+// Task 4:
 // Create a function which return the number of all subcategories in the shop
 //
-const data = require('../data/shop');
 const _ = require('lodash');
+const data = require('../data/shop');
 
 function getNumberOfSubCategories() {
-  const arrayOfCategories = _.flatten(_.map(data.sections, function(section) { return _.values(section.categories) }));
-  return _.flatten(_.map(arrayOfCategories, function(category) { return _.keys(category.subCategories) })).length;
+  const arrayOfCategories = _.flatten(_.map(data.sections,
+    (section) => _.values(section.categories)));
+  return _.flatten(_.map(arrayOfCategories, (category) => _.keys(category.subCategories))).length;
 }
 
 console.log(getNumberOfSubCategories());

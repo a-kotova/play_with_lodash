@@ -1,13 +1,13 @@
-// Task 11:
+// Task 14:
 // Create a function which returns array of sections names with modified case.
 // Function should have option to transform case to upper / lower / capitalized case.
 //
-const data = require('../data/shop');
 const _ = require('lodash');
+const data = require('../data/shop');
 
 function getCaseModifiedSections(requiredCase) {
   const sectionNames = _.keys(data.sections);
-  return _.map(sectionNames, function (section) {
+  return _.map(sectionNames, (section) => {
     switch (requiredCase) {
       case 'upper':
         return _.upperCase(section);
@@ -17,7 +17,7 @@ function getCaseModifiedSections(requiredCase) {
         return _.capitalize(section);
       default: return section;
     }
-  })
+  });
 }
 
 console.log(getCaseModifiedSections('upper'));
